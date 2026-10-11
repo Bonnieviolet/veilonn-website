@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Neon Studio — Privacy Policy</title>
-  <meta name="description" content="Neon Studio privacy policy: data minimization, local preferences, uploaded images, generated content, purchases, and advertising.">
-  <meta property="og:title" content="Neon Studio — Privacy Policy">
-  <meta property="og:description" content="Read the complete Neon Studio Privacy Policy.">
+  <title>VEILONN — Privacy Policy</title>
+  <meta name="description" content="VEILONN privacy policy: data minimization, local preferences, uploaded images, generated content, purchases, and advertising.">
+  <meta property="og:title" content="VEILONN — Privacy Policy">
+  <meta property="og:description" content="Read the complete VEILONN Privacy Policy.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
   <meta name="color-scheme" content="light dark">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=VT323&amp;display=swap&amp;subset=latin,latin-ext" rel="stylesheet">
+
   <style>
     :root {
       color-scheme: light;
@@ -22,8 +23,10 @@
       --neon-deep: oklch(0.52 0.25 358);
       --stage-surface: oklch(1 0 0);
       --capsule-face: oklch(1 0 0);
+      --capsule-face-press: oklch(0.965 0.006 350);
       --panel-face: oklch(0.995 0 0);
       --hairline: color-mix(in oklab, var(--neon) 30%, transparent);
+      --ease-snap: cubic-bezier(0.2, 0.9, 0.25, 1);
       --font-pixel: "VT323", "Press Start 2P", monospace;
       --font-body: ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
@@ -39,6 +42,7 @@
         --neon-deep: oklch(0.78 0.22 356);
         --stage-surface: oklch(0.12 0 0);
         --capsule-face: oklch(0.16 0 0);
+        --capsule-face-press: oklch(0.22 0 0);
         --panel-face: oklch(0.17 0 0);
         --hairline: color-mix(in oklab, var(--neon) 35%, transparent);
       }
@@ -46,6 +50,10 @@
 
     * {
       box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     html {
@@ -80,23 +88,81 @@
       text-align: center;
     }
 
-    .app-title {
-      display: inline-block;
-      max-width: 100%;
+    .app-heading {
       margin: 0;
-      padding: 1.25rem 1.75rem;
+      line-height: 1;
+    }
+
+    .capsule {
+      max-width: 100%;
       border: 3px solid var(--neon);
       border-radius: 9999px;
       background: var(--capsule-face);
       color: var(--neon-deep);
       box-shadow: none;
       font-family: var(--font-pixel);
-      font-size: 1.3rem;
       font-size-adjust: ex-height 0.5;
       font-weight: 400;
       line-height: 1;
       letter-spacing: 0;
       overflow-wrap: anywhere;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      transform: translateY(0) scale(1);
+      transition:
+        background-color 160ms var(--ease-snap),
+        border-color 160ms var(--ease-snap),
+        transform 160ms var(--ease-snap);
+    }
+
+    .capsule:hover {
+      border-color: var(--neon-deep);
+    }
+
+    .capsule:active {
+      background: var(--capsule-face-press);
+      border-color: var(--neon-deep);
+      transform: translateY(3px) scale(0.985);
+    }
+
+    .capsule:focus-visible {
+      outline: 2px solid var(--neon);
+      outline-offset: 4px;
+    }
+
+    .app-title {
+      display: inline-block;
+      min-height: 3.25rem;
+      margin: 0;
+      padding: 1.25rem 1.75rem;
+      font-size: 1.3rem;
+    }
+
+    .language-menu {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .language-menu li {
+      min-width: 0;
+    }
+
+    .language-button {
+      width: 100%;
+      min-height: 3rem;
+      padding: 0.75rem 0.625rem;
+      font-size: 1rem;
+    }
+
+    .language-button[aria-pressed="true"] {
+      border-color: var(--neon-deep);
+      background: var(--capsule-face-press);
     }
 
     .privacy-policy {
@@ -163,21 +229,79 @@
       .app-title {
         font-size: 1.6rem;
       }
+
+      .language-menu {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (hover: none) {
+      .capsule {
+        transition-duration: 90ms;
+      }
+
+      .capsule:hover {
+        border-color: var(--neon);
+      }
+
+      .capsule:active {
+        border-color: var(--neon-deep);
+        transition-duration: 0s;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .capsule {
+        transition: none;
+      }
+
+      .capsule:active {
+        transform: none;
+      }
     }
   </style>
 </head>
 <body>
   <main>
     <header class="app-header">
-      <h1 class="app-title">VEILONN</h1>
+      <h1 class="app-heading">
+        <button
+          id="language-toggle"
+          class="capsule app-title"
+          type="button"
+          aria-expanded="false"
+          aria-controls="language-menu"
+        >VEILONN</button>
+      </h1>
+
+      <ul id="language-menu" class="language-menu" hidden>
+        <li>
+          <button class="capsule language-button" type="button" data-language="en" lang="en" aria-pressed="true">English (EN)</button>
+        </li>
+        <li>
+          <button class="capsule language-button" type="button" data-language="fr" lang="fr" aria-pressed="false">Français (FR)</button>
+        </li>
+        <li>
+          <button class="capsule language-button" type="button" data-language="es" lang="es" aria-pressed="false">Español (ES)</button>
+        </li>
+        <li>
+          <button class="capsule language-button" type="button" data-language="pt" lang="pt" aria-pressed="false">Português (PT)</button>
+        </li>
+        <li>
+          <button class="capsule language-button" type="button" data-language="it" lang="it" aria-pressed="false">Italiano (IT)</button>
+        </li>
+        <li>
+          <button class="capsule language-button" type="button" data-language="de" lang="de" aria-pressed="false">Deutsch (DE)</button>
+        </li>
+      </ul>
     </header>
 
     <article class="privacy-policy" aria-labelledby="privacy-title">
       <header class="policy-header">
-        <h2 id="privacy-title" class="policy-title">PRIVACY POLICY</h2>
+        <h2 id="privacy-title" class="policy-title" aria-live="polite">PRIVACY POLICY</h2>
       </header>
 
-      <div class="policy-body">
+      <div id="policy-body" class="policy-body">
         <section class="policy-section">
           <h3 class="section-title">1. Privacy &amp; Data Minimization</h3>
           <p class="section-body">Users interact with the application through anonymous identifiers. We do not collect, store, or track personal user information such as names, email addresses, or account profiles on our servers.</p>
@@ -210,5 +334,279 @@
       </div>
     </article>
   </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      // Privacy headings and paragraphs copied from the app's localization file.
+      // The Italian policy heading is intentionally preserved exactly as stored.
+      const translations = {
+        en: {
+          title: "PRIVACY POLICY",
+          sections: [
+            [
+              "1. Privacy & Data Minimization",
+              "Users interact with the application through anonymous identifiers. We do not collect, store, or track personal user information such as names, email addresses, or account profiles on our servers."
+            ],
+            [
+              "2. Data Collected Locally",
+              'To ensure proper functionality and a smooth user experience, the app stores certain preferences and profile details locally on your device (such as your display mode, language preferences, and personal profile inputs like gender, height, weight or body shape). These settings are saved solely on your device. You can permanently delete all local data at any time using the "Reset Data" option.'
+            ],
+            [
+              "3. Images and Uploaded Content",
+              "Personal images are not permanently stored on our servers and are deleted immediately after the session is complete."
+            ],
+            [
+              "4. Temporarily Generated Content",
+              "For generation content, these images are not permanently stored on our servers and are automatically deleted from our third-party providers' infrastructure within a maximum timeframe of 30 days."
+            ],
+            [
+              "5. Payments and In-App Purchases",
+              "Your credits purchase are handled securely and directly by the App Store. We do not store or have access to your credit card or banking details."
+            ],
+            [
+              "6. Advertising and Third-Party Networks",
+              "The app displays advertisements provided by third-party ad networks. These partners may automatically collect non-personal technical data (such as device advertising identifiers or IP addresses) to serve, personalize, and measure advertisements."
+            ]
+          ]
+        },
+
+        fr: {
+          title: "POLITIQUE DE CONFIDENTIALITÉ",
+          sections: [
+            [
+              "1. Confidentialité et minimisation des données",
+              "Les utilisateurs interagissent avec l'application via des identifiants anonymes. Nous ne collectons, ne stockons ni ne suivons aucune information personnelle telle que les noms, adresses e-mail ou profils de compte sur nos serveurs."
+            ],
+            [
+              "2. Données collectées localement",
+              "Pour garantir un bon fonctionnement et une expérience fluide, l'application stocke certaines préférences et informations de profil localement sur votre appareil (telles que votre mode d'affichage, vos préférences de langue et vos données de profil comme le genre, la taille, le poids ou la morphologie). Ces paramètres sont enregistrés uniquement sur votre appareil. Vous pouvez supprimer définitivement toutes les données locales à tout moment via l'option «Réinitialiser»."
+            ],
+            [
+              "3. Images et contenus téléchargés",
+              "Les images personnelles ne sont pas stockées de manière permanente sur nos serveurs et sont supprimées immédiatement après la session."
+            ],
+            [
+              "4. Contenus générés temporairement",
+              "Pour les contenus générés, ces images ne sont pas stockées de manière permanente sur nos serveurs et sont automatiquement supprimées de l'infrastructure de nos fournisseurs tiers dans un délai maximum de 30 jours."
+            ],
+            [
+              "5. Paiements et achats intégrés",
+              "Vos achats de crédits sont traités de manière sécurisée et directement par l'App Store. Nous ne stockons ni n'avons accès à vos données de carte bancaire."
+            ],
+            [
+              "6. Publicité et réseaux tiers",
+              "L'application affiche des publicités fournies par des réseaux publicitaires tiers. Ces partenaires peuvent collecter automatiquement des données techniques non personnelles (telles que les identifiants publicitaires de l'appareil ou les adresses IP) pour diffuser, personnaliser et mesurer les publicités."
+            ]
+          ]
+        },
+
+        es: {
+          title: "POLÍTICA DE PRIVACIDAD",
+          sections: [
+            [
+              "1. Privacidad y minimización de datos",
+              "Los usuarios interactúan con la aplicación mediante identificadores anónimos. No recopilamos, almacenamos ni rastreamos información personal como nombres, direcciones de correo electrónico o perfiles de cuenta en nuestros servidores."
+            ],
+            [
+              "2. Datos recopilados localmente",
+              'Para garantizar un buen funcionamiento y una experiencia fluida, la aplicación guarda ciertas preferencias y datos de perfil localmente en tu dispositivo (como el modo de visualización, el idioma y datos de perfil como género, altura, peso o morfología). Estos ajustes se guardan únicamente en tu dispositivo. Puedes eliminar permanentemente todos los datos locales en cualquier momento con la opción "Restablecer datos".'
+            ],
+            [
+              "3. Imágenes y contenido subido",
+              "Las imágenes personales no se almacenan permanentemente en nuestros servidores y se eliminan inmediatamente al finalizar la sesión."
+            ],
+            [
+              "4. Contenido generado temporalmente",
+              "Para el contenido generado, estas imágenes no se almacenan permanentemente en nuestros servidores y se eliminan automáticamente de la infraestructura de nuestros proveedores externos en un plazo máximo de 30 días."
+            ],
+            [
+              "5. Pagos y compras integradas",
+              "Tus compras de créditos son gestionadas de forma segura y directamente por la App Store. No almacenamos ni tenemos acceso a los datos de tu tarjeta bancaria."
+            ],
+            [
+              "6. Publicidad y redes de terceros",
+              "La aplicación muestra anuncios proporcionados por redes publicitarias de terceros. Estos socios pueden recopilar automáticamente datos técnicos no personales (como identificadores publicitarios del dispositivo o direcciones IP) para servir, personalizar y medir los anuncios."
+            ]
+          ]
+        },
+
+        pt: {
+          title: "POLÍTICA DE PRIVACIDADE",
+          sections: [
+            [
+              "1. Privacidade e minimização de dados",
+              "Os utilizadores interagem com a aplicação através de identificadores anónimos. Não recolhemos, armazenamos nem rastreamos informações pessoais como nomes, endereços de e-mail ou perfis de conta nos nossos servidores."
+            ],
+            [
+              "2. Dados recolhidos localmente",
+              'Para garantir o bom funcionamento e uma experiência fluida, a aplicação guarda certas preferências e dados de perfil localmente no seu dispositivo (como o modo de exibição, o idioma e dados de perfil como género, altura, peso ou morfologia). Estas definições são guardadas apenas no seu dispositivo. Pode eliminar permanentemente todos os dados locais a qualquer momento através da opção "Repor dados".'
+            ],
+            [
+              "3. Imagens e conteúdo carregado",
+              "As imagens pessoais não são armazenadas permanentemente nos nossos servidores e são eliminadas imediatamente após o fim da sessão."
+            ],
+            [
+              "4. Conteúdo gerado temporariamente",
+              "Para o conteúdo gerado, estas imagens não são armazenadas permanentemente nos nossos servidores e são automaticamente eliminadas da infraestrutura dos nossos fornecedores terceiros num prazo máximo de 30 dias."
+            ],
+            [
+              "5. Pagamentos e compras integradas",
+              "As suas compras de créditos são processadas de forma segura e diretamente pela App Store. Não armazenamos nem temos acesso aos dados do seu cartão bancário."
+            ],
+            [
+              "6. Publicidade e redes de terceiros",
+              "A aplicação apresenta anúncios fornecidos por redes de publicidade de terceiros. Estes parceiros podem recolher automaticamente dados técnicos não pessoais (como identificadores de publicidade do dispositivo ou endereços IP) para apresentar, personalizar e medir anúncios."
+            ]
+          ]
+        },
+
+        it: {
+          title: "PRIVACY POLICY",
+          sections: [
+            [
+              "1. Privacy e minimizzazione dei dati",
+              "Gli utenti interagiscono con l'applicazione tramite identificatori anonimi. Non raccogliamo, conserviamo né tracciamo informazioni personali come nomi, indirizzi email o profili account sui nostri server."
+            ],
+            [
+              "2. Dati raccolti localmente",
+              "Per garantire il corretto funzionamento e un'esperienza fluida, l'app salva alcune preferenze e dati del profilo localmente sul tuo dispositivo (come la modalità di visualizzazione, la lingua e i dati del profilo come genere, altezza, peso o morfologia). Queste impostazioni sono salvate esclusivamente sul tuo dispositivo. Puoi eliminare definitivamente tutti i dati locali in qualsiasi momento con l'opzione \"Reimposta dati\"."
+            ],
+            [
+              "3. Immagini e contenuti caricati",
+              "Le immagini personali non vengono archiviate in modo permanente sui nostri server e vengono eliminate immediatamente al termine della sessione."
+            ],
+            [
+              "4. Contenuti generati temporaneamente",
+              "Per i contenuti generati, queste immagini non vengono archiviate in modo permanente sui nostri server e vengono eliminate automaticamente dall'infrastruttura dei nostri fornitori terzi entro un periodo massimo di 30 giorni."
+            ],
+            [
+              "5. Pagamenti e acquisti in-app",
+              "I tuoi acquisti di crediti sono gestiti in modo sicuro e direttamente dall'App Store. Non memorizziamo né abbiamo accesso ai dati della tua carta bancaria."
+            ],
+            [
+              "6. Pubblicità e reti di terze parti",
+              "L'app mostra annunci forniti da reti pubblicitarie di terze parti. Questi partner possono raccogliere automaticamente dati tecnici non personali (come identificatori pubblicitari del dispositivo o indirizzi IP) per fornire, personalizzare e misurare gli annunci."
+            ]
+          ]
+        },
+
+        de: {
+          title: "DATENSCHUTZRICHTLINIE",
+          sections: [
+            [
+              "1. Datenschutz und Datenminimierung",
+              "Nutzer interagieren mit der App über anonyme Kennungen. Wir erfassen, speichern oder verfolgen keine persönlichen Informationen wie Namen, E-Mail-Adressen oder Kontoprofile auf unseren Servern."
+            ],
+            [
+              "2. Lokal erhobene Daten",
+              'Um eine einwandfreie Funktion und ein reibungsloses Nutzererlebnis zu gewährleisten, speichert die App bestimmte Einstellungen und Profildaten lokal auf deinem Gerät (wie Anzeigemodus, Spracheinstellungen und Profilangaben wie Geschlecht, Größe, Gewicht oder Körperform). Diese Einstellungen werden ausschließlich auf deinem Gerät gespeichert. Du kannst alle lokalen Daten jederzeit über die Option „Daten zurücksetzen" dauerhaft löschen.'
+            ],
+            [
+              "3. Bilder und hochgeladene Inhalte",
+              "Persönliche Bilder werden nicht dauerhaft auf unseren Servern gespeichert und sofort nach Abschluss der Sitzung gelöscht."
+            ],
+            [
+              "4. Temporär generierte Inhalte",
+              "Generierte Inhalte werden nicht dauerhaft auf unseren Servern gespeichert und automatisch innerhalb von maximal 30 Tagen von der Infrastruktur unserer Drittanbieter gelöscht."
+            ],
+            [
+              "5. Zahlungen und In-App-Käufe",
+              "Deine Credit-Käufe werden sicher und direkt über den App Store abgewickelt. Wir speichern keine Kreditkarten- oder Bankdaten und haben keinen Zugriff darauf."
+            ],
+            [
+              "6. Werbung und Drittanbieter-Netzwerke",
+              "Die App zeigt Werbung von Drittanbieter-Werbenetzwerken. Diese Partner können automatisch nicht-persönliche technische Daten (wie Werbe-IDs des Geräts oder IP-Adressen) erfassen, um Werbung auszuspielen, zu personalisieren und zu messen."
+            ]
+          ]
+        }
+      };
+
+      const toggle = document.getElementById("language-toggle");
+      const menu = document.getElementById("language-menu");
+      const header = document.querySelector(".app-header");
+      const policyTitle = document.getElementById("privacy-title");
+      const sections = document.querySelectorAll(".policy-section");
+      const languageButtons = menu.querySelectorAll("[data-language]");
+      const description = document.querySelector('meta[name="description"]');
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDescription = document.querySelector('meta[property="og:description"]');
+
+      function setMenuOpen(open) {
+        menu.hidden = !open;
+        toggle.setAttribute("aria-expanded", String(open));
+      }
+
+      function selectLanguage(language) {
+        if (!Object.prototype.hasOwnProperty.call(translations, language)) {
+          return;
+        }
+
+        const policy = translations[language];
+
+        document.documentElement.lang = language;
+        document.title = "VEILONN — " + policy.title;
+        policyTitle.textContent = policy.title;
+
+        sections.forEach((section, index) => {
+          const text = policy.sections[index];
+          section.querySelector(".section-title").textContent = text[0];
+          section.querySelector(".section-body").textContent = text[1];
+        });
+
+        languageButtons.forEach((button) => {
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.language === language)
+          );
+        });
+
+        if (description) {
+          description.setAttribute("content", policy.sections[0][1]);
+        }
+
+        if (ogTitle) {
+          ogTitle.setAttribute("content", document.title);
+        }
+
+        if (ogDescription) {
+          ogDescription.setAttribute("content", policy.sections[0][1]);
+        }
+
+        setMenuOpen(false);
+        toggle.focus({ preventScroll: true });
+      }
+
+      toggle.addEventListener("click", () => {
+        setMenuOpen(menu.hidden);
+      });
+
+      languageButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          selectLanguage(button.dataset.language);
+        });
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !menu.hidden) {
+          setMenuOpen(false);
+          toggle.focus({ preventScroll: true });
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!header.contains(event.target)) {
+          setMenuOpen(false);
+        }
+      });
+
+      document.addEventListener("focusin", (event) => {
+        if (!header.contains(event.target)) {
+          setMenuOpen(false);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
