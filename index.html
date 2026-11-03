@@ -218,6 +218,11 @@
       overflow-wrap: break-word;
     }
 
+    .section-body a {
+      color: var(--neon-deep);
+      text-decoration: underline;
+    }
+
     @media (min-width: 640px) {
       main {
         padding-top: max(3.5rem, env(safe-area-inset-top));
@@ -329,7 +334,7 @@
 
         <section class="policy-section">
           <h3 class="section-title">6. Advertising and Third-Party Networks</h3>
-          <p class="section-body">The app displays advertisements provided by third-party ad networks. These partners may automatically collect non-personal technical data (such as device advertising identifiers or IP addresses) to serve, personalize, and measure advertisements.</p>
+          <p class="section-body">The App displays advertisements provided by third-party ad networks, primarily Google AdMob (provided by Google LLC). These partners may collect and process device advertising identifiers (such as the iOS IDFA), IP addresses, and coarse location data to serve, personalize, and measure advertisements in accordance with their own privacy policies. For more information on how Google uses and processes your data, please review <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Google’s Privacy &amp; Terms</a>. You can opt out of personalized advertising at any time through your device settings (Settings &gt; Privacy &amp; Security &gt; Tracking).</p>
         </section>
       </div>
     </article>
@@ -341,6 +346,8 @@
 
       // Privacy headings and paragraphs copied from the app's localization file.
       // The Italian policy heading is intentionally preserved exactly as stored.
+      // Section 6 contains a Google link, so bodies are rendered as HTML.
+      // These strings are written by us, never taken from the visitor.
       const translations = {
         en: {
           title: "PRIVACY POLICY",
@@ -367,7 +374,7 @@
             ],
             [
               "6. Advertising and Third-Party Networks",
-              "The app displays advertisements provided by third-party ad networks. These partners may automatically collect non-personal technical data (such as device advertising identifiers or IP addresses) to serve, personalize, and measure advertisements."
+              "The App displays advertisements provided by third-party ad networks, primarily Google AdMob (provided by Google LLC). These partners may collect and process device advertising identifiers (such as the iOS IDFA), IP addresses, and coarse location data to serve, personalize, and measure advertisements in accordance with their own privacy policies. For more information on how Google uses and processes your data, please review <a href='https://policies.google.com/technologies/partner-sites' target='_blank' rel='noopener noreferrer'>Google’s Privacy &amp; Terms</a>. You can opt out of personalized advertising at any time through your device settings (Settings &gt; Privacy &amp; Security &gt; Tracking)."
             ]
           ]
         },
@@ -397,7 +404,7 @@
             ],
             [
               "6. Publicité et réseaux tiers",
-              "L'application affiche des publicités fournies par des réseaux publicitaires tiers. Ces partenaires peuvent collecter automatiquement des données techniques non personnelles (telles que les identifiants publicitaires de l'appareil ou les adresses IP) pour diffuser, personnaliser et mesurer les publicités."
+              "L'application affiche des publicités fournies par des réseaux publicitaires tiers, principalement Google AdMob (fourni par Google LLC). Ces partenaires peuvent collecter et traiter des identifiants publicitaires de l'appareil (comme l'IDFA d'iOS), des adresses IP et des données de localisation approximative pour diffuser, personnaliser et mesurer les publicités, conformément à leurs propres politiques de confidentialité. Pour en savoir plus sur la façon dont Google utilise et traite vos données, consultez <a href='https://policies.google.com/technologies/partner-sites' target='_blank' rel='noopener noreferrer'>la Politique de confidentialité et les Conditions de Google</a>. Vous pouvez refuser la publicité personnalisée à tout moment dans les réglages de votre appareil (Réglages &gt; Confidentialité et sécurité &gt; Suivi)."
             ]
           ]
         },
@@ -427,7 +434,7 @@
             ],
             [
               "6. Publicidad y redes de terceros",
-              "La aplicación muestra anuncios proporcionados por redes publicitarias de terceros. Estos socios pueden recopilar automáticamente datos técnicos no personales (como identificadores publicitarios del dispositivo o direcciones IP) para servir, personalizar y medir los anuncios."
+              "La aplicación muestra anuncios proporcionados por redes publicitarias de terceros, principalmente Google AdMob (proporcionado por Google LLC). Estos socios pueden recopilar y procesar identificadores publicitarios del dispositivo (como el IDFA de iOS), direcciones IP y datos de ubicación aproximada para mostrar, personalizar y medir los anuncios, de acuerdo con sus propias políticas de privacidad. Para más información sobre cómo Google utiliza y procesa tus datos, consulta <a href='https://policies.google.com/technologies/partner-sites' target='_blank' rel='noopener noreferrer'>la Privacidad y las Condiciones de Google</a>. Puedes desactivar la publicidad personalizada en cualquier momento desde los ajustes de tu dispositivo (Ajustes &gt; Privacidad y seguridad &gt; Seguimiento)."
             ]
           ]
         },
@@ -457,7 +464,7 @@
             ],
             [
               "6. Publicidade e redes de terceiros",
-              "A aplicação apresenta anúncios fornecidos por redes de publicidade de terceiros. Estes parceiros podem recolher automaticamente dados técnicos não pessoais (como identificadores de publicidade do dispositivo ou endereços IP) para apresentar, personalizar e medir anúncios."
+              "A aplicação apresenta anúncios fornecidos por redes de publicidade de terceiros, principalmente o Google AdMob (fornecido pela Google LLC). Estes parceiros podem recolher e processar identificadores publicitários do dispositivo (como o IDFA do iOS), endereços IP e dados de localização aproximada para apresentar, personalizar e medir anúncios, de acordo com as suas próprias políticas de privacidade. Para mais informações sobre a forma como a Google utiliza e processa os seus dados, consulte <a href='https://policies.google.com/technologies/partner-sites' target='_blank' rel='noopener noreferrer'>a Privacidade e os Termos da Google</a>. Pode desativar a publicidade personalizada a qualquer momento nas definições do seu dispositivo (Definições &gt; Privacidade e Segurança &gt; Rastreio)."
             ]
           ]
         },
@@ -487,7 +494,7 @@
             ],
             [
               "6. Pubblicità e reti di terze parti",
-              "L'app mostra annunci forniti da reti pubblicitarie di terze parti. Questi partner possono raccogliere automaticamente dati tecnici non personali (come identificatori pubblicitari del dispositivo o indirizzi IP) per fornire, personalizzare e misurare gli annunci."
+              "L'app mostra annunci forniti da reti pubblicitarie di terze parti, principalmente Google AdMob (fornito da Google LLC). Questi partner possono raccogliere ed elaborare identificatori pubblicitari del dispositivo (come l'IDFA di iOS), indirizzi IP e dati di posizione approssimativa per fornire, personalizzare e misurare gli annunci, in conformità con le proprie informative sulla privacy. Per maggiori informazioni su come Google utilizza ed elabora i tuoi dati, consulta <a href='https://policies.google.com/technologies/partner-sites' target='_blank' rel='noopener noreferrer'>la Privacy e i Termini di Google</a>. Puoi disattivare la pubblicità personalizzata in qualsiasi momento dalle impostazioni del dispositivo (Impostazioni &gt; Privacy e sicurezza &gt; Tracciamento)."
             ]
           ]
         },
@@ -517,7 +524,7 @@
             ],
             [
               "6. Werbung und Drittanbieter-Netzwerke",
-              "Die App zeigt Werbung von Drittanbieter-Werbenetzwerken. Diese Partner können automatisch nicht-persönliche technische Daten (wie Werbe-IDs des Geräts oder IP-Adressen) erfassen, um Werbung auszuspielen, zu personalisieren und zu messen."
+              "Die App zeigt Werbung von Drittanbieter-Werbenetzwerken an, hauptsächlich Google AdMob (bereitgestellt von Google LLC). Diese Partner können gerätebezogene Werbe-Kennungen (wie die IDFA unter iOS), IP-Adressen und ungefähre Standortdaten erfassen und verarbeiten, um Werbung auszuspielen, zu personalisieren und zu messen, gemäß ihren eigenen Datenschutzrichtlinien. Weitere Informationen dazu, wie Google deine Daten verwendet und verarbeitet, findest du in <a href='https://policies.google.com/technologies/partner-sites' target='_blank' rel='noopener noreferrer'>den Datenschutzbestimmungen und Nutzungsbedingungen von Google</a>. Du kannst personalisierte Werbung jederzeit in den Geräteeinstellungen deaktivieren (Einstellungen &gt; Datenschutz &amp; Sicherheit &gt; Tracking)."
             ]
           ]
         }
@@ -552,7 +559,7 @@
         sections.forEach((section, index) => {
           const text = policy.sections[index];
           section.querySelector(".section-title").textContent = text[0];
-          section.querySelector(".section-body").textContent = text[1];
+          section.querySelector(".section-body").innerHTML = text[1];
         });
 
         languageButtons.forEach((button) => {
